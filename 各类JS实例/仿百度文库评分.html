@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度文库评分</title>
+    <style>
+        *{padding:0;margin:0}
+        p {
+            border: 1px solid #eee;
+            width: 400px;
+            margin: 50px auto;
+            padding: 10px 10px;
+        }
+    </style>
+    <!--/*-->
+    <!--1.划过星星span显示，提示消失-->
+    <!--2.划过前两个星星显示灰色，span里显示较差-->
+    <!--3.划过第三个星星显示橘色，span里显示一般-->
+    <!--4.划过第四个星星显示橘色，span里显示推荐-->
+    <!--5.划过第五个星星显示橘色，span里显示力荐-->
+    <!--6.点击当前星星，不能滑动，再次点击还可以评分 可以定义一个开关-->
+    <!--*/-->
+</head>
+<body>
+<p>
+    我的评价：
+		<span id="rating">
+			<img src="images/nst.gif" alt="">
+            <img src="images/nst.gif" alt="">
+            <img src="images/nst.gif" alt="">
+            <img src="images/nst.gif" alt="">
+            <img src="images/nst.gif" alt="">
+		</span>
+    <span id="comment"></span>
+</p>
+<script>
+    var rating=document.getElementById('rating');
+    var aImg=rating.getElementsByTagName('img');
+    var comment=document.getElementById('comment');
+    var arr=['images/nst.gif','images/nsg.gif','images/sth.gif','images/st.gif'];
+    var saveSrc=[];
+    var oldComment='';
+    function fn1(index,imgSrc){
+        for(var i=0;i<=index;i++){
+            aImg[i].src=imgSrc;
+        }
+        switch(index){
+            case 0:
+                comment.innerHTML='极差';
+                break;
+            case 1:
+                comment.innerHTML='很差';
+                break;
+            case 2:
+                comment.innerHTML='还行';
+                break;
+            case 3:
+                comment.innerHTML='不错';
+                break;
+            case 4:
+                comment.innerHTML='推荐';
+        }
+
+    }
+    for(var i=0;i<aImg.length;i++){
+        aImg[i].index=i;
+        aImg[i].onmouseover=function(){
+                for(var i=0;i<aImg.length;i++){
+                    saveSrc[i]=aImg[i].src;
+                }//当点击后再把鼠标移动上去，要先记录地址
+                fn1(aImg.length-1,arr[0]);//先清空，在赋值
+                if(this.index<2){
+                    fn1(this.index,arr[1]);
+                }else{
+                    fn1(this.index,arr[2]);
+                }
+
+        };
+        aImg[i].onmouseout=function(){
+            for(var i=0;i<aImg.length;i++){
+                aImg[i].src=saveSrc[i];
+            }//当把鼠标移开，把记录的地址附回上去
+             comment.innerHTML=oldComment;//评论可以为空或有值
+        };
+        aImg[i].onclick=function(){
+            fn1(aImg.length-1,arr[0]);//每次点击把图片设置为第一张（清空）,再记录
+            if(this.index<2){
+                fn1(this.index,arr[1]);
+            }else{
+                fn1(this.index,arr[3]);
+            }
+            for(var i=0;i<aImg.length;i++){
+                saveSrc[i]=aImg[i].src;
+            }//记录地址
+            oldComment=comment.innerHTML;//记录评论
+        }
+    }
+</script>
+</body>
+</html>

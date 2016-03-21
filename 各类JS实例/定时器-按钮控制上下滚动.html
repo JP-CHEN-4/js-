@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{padding:0;margin:0}
+        li{list-style:none;}
+        a{text-decoration:none;}
+        #container{width:170px;height:450px;margin:0 auto;position:relative;overflow:hidden;}
+        #container h2{width:160px;background:#294A73;color:#fff;font-size:14px;padding:5px;border-top-left-radius:10px;
+        border-top-right-radius:10px;}
+        #hide{overflow:hidden;}
+        #container h2 a{float:right;color:#fff;}
+        img{width:80px;height:60px;}
+        #list li div{width:80px;float:left;}
+        #list li div h3{font-size:14px;line-height:28px;}
+        #list li div p{font-size:14px;}
+        #list li img{float:right}
+        #list li p.time{clear:both;padding:10px 0 5px 0;color:gray;font-size:12px;}
+        #list li{border-bottom:1px solid #A4A4A4;margin-bottom:5px;}
+        #list{position:relative;top:25px;left:0px;}
+        #up,#down{width:100%;text-align:center;height:20px;line-height:20px;cursor:pointer;background:gainsboro;position:absolute;}
+        #up{left:0px;top:26px;z-index:1;}
+        #down{left:0px;bottom:0px;z-index:1;}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>哈哈课堂<a href="#">>>更多</a></h2>
+        <div id="hide">
+        <div id="up">上</div>
+        <ul id="list">
+            <li>
+                <div>
+                    <h3>标题一</h3>
+                    <p>Mac翻新产品</p>
+                </div>
+                <img src="images/1.jpg" alt=""/>
+                <p class="time">12:35</p>
+            </li>
+            <li>
+                <div>
+                    <h3>标题二</h3>
+                    <p>Mac翻新产品</p>
+                </div>
+                <img src="images/1.jpg" alt=""/>
+                <p class="time">12:35</p>
+            </li>
+            <li>
+                <div>
+                    <h3>标题三</h3>
+                    <p>Mac翻新产品</p>
+                </div>
+                <img src="images/1.jpg" alt=""/>
+                <p class="time">12:35</p>
+            </li>
+            <li>
+                <div>
+                    <h3>标题四</h3>
+                    <p>Mac翻新产品</p>
+                </div>
+                <img src="images/1.jpg" alt=""/>
+                <p class="time">12:35</p>
+            </li>
+            <li>
+                <div>
+                    <h3>标题五</h3>
+                    <p>Mac翻新产品</p>
+                </div>
+                <img src="images/1.jpg" alt=""/>
+                <p class="time">12:35</p>
+            </li>
+            <li>
+                <div>
+                    <h3>标题六</h3>
+                    <p>Mac翻新产品</p>
+                </div>
+                <img src="images/1.jpg" alt=""/>
+                <p class="time">12:35</p>
+            </li>
+            <li>
+                <div>
+                    <h3>标题七</h3>
+                    <p>Mac翻新产品</p>
+                </div>
+                <img src="images/1.jpg" alt=""/>
+                <p class="time">12:35</p>
+            </li>
+            <li>
+                <div>
+                    <h3>标题八</h3>
+                    <p>Mac翻新产品</p>
+                </div>
+                <img src="images/1.jpg" alt=""/>
+                <p class="time">12:35</p>
+            </li>
+            <li>
+                <div>
+                    <h3>标题九</h3>
+                    <p>Mac翻新产品</p>
+                </div>
+                <img src="images/1.jpg" alt=""/>
+                <p class="time">12:35</p>
+            </li>
+            <li>
+                <div>
+                    <h3>标题九</h3>
+                    <p>Mac翻新产品</p>
+                </div>
+                <img src="images/1.jpg" alt=""/>
+                <p class="time">12:35</p>
+            </li>
+            <li>
+                <div>
+                    <h3>标题九</h3>
+                    <p>Mac翻新产品</p>
+                </div>
+                <img src="images/1.jpg" alt=""/>
+                <p class="time">12:35</p>
+            </li>
+        </ul>
+        <div id="down">下</div>
+        </div>
+    </div>
+    <script>
+        var up=document.getElementById('up');
+        var down=document.getElementById('down');
+        var list=document.getElementById('list');
+        var container=document.getElementById('container');
+        function getStyle(obj,attr){
+            return obj.currentStyle? obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+        }
+        ////////////////////封装函数/////////////////////////////
+        function move(obj,second,len,dir){//对象，移动快慢秒数,移动的长度
+            dir=len>0? dir:-dir;//判断方向，向上走还是向下走
+            clearInterval(obj.timer);
+            obj.timer=setInterval(function(){
+                speed=parseInt(getStyle(obj,'top'))+dir;
+                if(len<0&&speed<len){
+                    speed=len;
+                }
+                if(len>0&&speed>len){
+                    speed=len;
+                }
+                obj.style.top=speed+'px';
+            },second);
+        }
+        ////////////////////////////////////////////////////////
+        var length=list.offsetHeight;
+        var length_con=container.offsetHeight-50;
+        var l=-(length-length_con);//动态计算移动的长度 然后停
+        up.onmousedown=function(){
+            move(list,30,l,10);
+//            clearInterval(list.timer);
+//            list.timer=setInterval(function(){
+//                speed=parseInt(getStyle(list,'top'))-10;
+//                if(speed<-l){
+//                    speed=-l;
+//                }
+//                list.style.top=speed+'px';
+//            },30);
+        };
+        up.onmouseup=function(){
+            clearInterval(list.timer);
+        };
+        down.onmousedown=function(){
+          move(list,30,25,10);
+//            clearInterval(list.timer);
+//            list.timer=setInterval(function(){
+//                speed=parseInt(getStyle(list,'top'))+10;
+//                if(speed>25){
+//                    speed=25;
+//                }
+//                list.style.top=speed+'px';
+//            },30);
+        };
+        down.onmouseup=function(){
+            clearInterval(list.timer);
+        };
+    </script>
+</body>
+</html>

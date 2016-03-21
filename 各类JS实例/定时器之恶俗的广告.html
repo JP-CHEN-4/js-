@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{text-align:center;}
+        img{display:none;}
+    </style>
+</head>
+<body>
+<img  id='img1'src="images/1.jpg" alt=""/>
+<script>
+    var img=document.getElementById('img1');
+    setTimeout(function(){
+        img.style.display='block';
+        setTimeout(function(){
+            img.style.display='none';
+        },3000);
+    },2000);
+</script>
+</body>
+</html>

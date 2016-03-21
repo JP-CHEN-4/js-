@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{padding:0;margin:0}
+        li{list-style:none;}
+        #songs{border:1px solid #eee;width:400px;margin:20px auto;font-size:14px;}
+        #list li{height:30px;line-height:30px;}
+        #list .title{display:inline-block;width:280px;}
+        #toolbar{width:100%;height:35px;line-height:35px;border-top:1px solid #DEDEDE;border-bottom:2px solid #424242;}
+        #toolbar li{float:left;width:100px;text-align:left;}
+        #toolbar .button{border:1px solid #CECECE;display:block;height:20px;line-height:20px;width:60px;cursor:pointer;
+        text-align:center;margin:6px 0;}
+        .white{opacity:1;}
+        .back{opacity:0.6;}
+    </style>
+</head>
+<body>
+    <div id="songs">
+        <ul id="list">
+            <li>
+                <input type="checkbox"/>
+                <span class="title">私奔</span>
+                <span class="singer">梁博</span>
+            </li>
+            <li>
+                <input type="checkbox"/>
+                <span class="title">私奔</span>
+                <span class="singet">梁博</span>
+            </li>
+            <li>
+                <input type="checkbox"/>
+                <span class="title">私奔</span>
+                <span class="singet">梁博</span>
+            </li>
+            <li>
+                <input type="checkbox"/>
+                <span class="title">私奔</span>
+                <span class="singet">梁博</span>
+            </li>
+            <li>
+                <input type="checkbox"/>
+                <span class="title">私奔</span>
+                <span class="singet">梁博</span>
+            </li>
+        </ul>
+        <ul id="toolbar">
+            <li>
+                <input type="checkbox"/>全选
+            </li>
+            <li>
+                <span class="button" id="favorite">收藏</span>
+            </li>
+            <li>
+                <span class="button" id="add">添加</span>
+            </li>
+            <li>
+                <span class="button" id="delete">删除</span>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var list=document.getElementById('list');
+        var toolbar=document.getElementById('toolbar');
+        var aLi=list.getElementsByTagName('li');
+        var allLi=toolbar.getElementsByTagName('li')[0];
+        var btn=toolbar.getElementsByTagName('li');
+        var all=allLi.getElementsByTagName('input')[0];
+        var arr=[];
+        var color=[];
+        var flag=0;//记录复选框选中的个数
+        for(var i=0;i<aLi.length;i++){
+            arr[i]=aLi[i].getElementsByTagName('input')[0];
+        }
+        for(var i=0;i<aLi.length;i++){//设置各行颜色的变化并存储颜色
+            if(i%2){
+                aLi[i].style.backgroundColor='#FFF';
+            }else{
+                aLi[i].style.backgroundColor='#F7FFFF';
+            }
+            color[i]=aLi[i].style.backgroundColor;
+        }
+        for(var i=1;i<btn.length;i++){//先初始化按钮为透明
+            btn[i].style.opacity='0.3';
+        }
+        for(var i=0;i<arr.length;i++){
+            arr[i].index=i;
+            arr[i].onclick=function(){
+                    flag=0;
+                for(var i=0;i<arr.length;i++){
+                    flag+=Number(arr[i].checked);//灵活运用checked的值转换为数字
+                }//每次点击时都统计复选框选中的个数
+                if(flag==arr.length){//当点击满个数是all选框就会被选中
+                    all.checked=true;
+                }else{
+                    all.checked=false;
+                }
+                if(flag){
+                    for(var i=1;i<btn.length;i++){
+                        btn[i].style.opacity='1';
+                    }
+                }else{
+                    for(var i=1;i<btn.length;i++){
+                        btn[i].style.opacity='0.3';
+                    }
+                }
+                if(this.checked){//this.checked用来判断点击后选项框的状态
+                    aLi[this.index].style.backgroundColor='#CECECE';
+                }else{
+                    aLi[this.index].style.backgroundColor=color[this.index];
+                }
+            };
+        }
+        for(var i=0;i<aLi.length;i++){//鼠标划入划出
+            aLi[i].index=i;
+            aLi[i].onmouseover=function(){
+                this.style.backgroundColor='#CECECE';
+            };
+            aLi[i].onmouseout=function(){
+                if(!arr[this.index].checked){
+                    this.style.background=color[this.index];
+                }
+            }
+        }
+        all.onclick=function(){//全选框
+            if(this.checked) {
+                for (var i = 0; i < aLi.length; i++) {
+                    arr[i].checked = true;
+                    aLi[i].style.backgroundColor = '#CECECE';
+                }
+                for (var i = 1; i < btn.length; i++) {
+                    btn[i].style.opacity = '1';
+                }
+            }else{
+                for(var i=0;i<aLi.length;i++){
+                    arr[i].checked=false;
+                    aLi[i].style.backgroundColor=color[i];
+                }
+                for(var i=1;i<btn.length;i++){
+                    btn[i].style.opacity='0.3';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

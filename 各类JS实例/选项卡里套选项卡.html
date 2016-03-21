@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{padding:0;margin:0;}
+        li{list-style:none;}
+        #tabs{width:960px;background:#E7E7E7;margin:0 auto;}
+        #nav{width:150px;float:left;}
+        #nav li{width:150px;height:81.5px;border:1px solid #eee;text-align:center;line-height:80px;cursor:pointer; }
+        #contents{width:810px;height:335px;float:right;position:relative;}
+        #contents img{width:810px;height:335px;}
+        .show{display:block;}
+        #contents ul{position:absolute;bottom:0;left:0px;width:100%;display:none;}
+        #contents ul li{display:table-cell;line-height:30px;text-align:center;border:1px solid #eee;padding:0 20px;cursor:pointer;
+        background:#fff;opacity:0.6;}
+        .active{background-color:#ba6317;color:#fff;}
+        /*#contents ul{display:none;}*/
+        #contents ul.show{display:table;}
+        #contents ul li.hot{background-color:#ba6317;color:#fff;}
+    </style>
+</head>
+<body>
+    <div id="tabs">
+        <ul id="nav">
+            <li class="active">最热团购</li>
+            <li>商城特惠</li>
+            <li>名品推荐</li>
+            <li>缤纷活动</li>
+        </ul>
+        <div id="contents">
+            <img src="images/1.jpg" alt=""/>
+            <ul class="show">
+                <li>最热团购</li>
+                <li>最热团购</li>
+            </ul>
+            <ul>
+                <li>最热团购2</li>
+                <li>最热团购2</li>
+                <li>最热团购2</li>
+            </ul>
+            <ul>
+                <li>最热团购3</li>
+                <li>最热团购3</li>
+                <li>最热团购3</li>
+                <li>最热团购2</li>
+            </ul>
+            <ul>
+                <li>最热团购4</li>
+                <li>最热团购4</li>
+                <li>最热团购4</li>
+                <li>最热团购4</li>
+                <li>最热团购4</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var oUl=document.getElementById('nav');
+        var aLi=oUl.getElementsByTagName('li');
+        var contents=document.getElementById('contents');
+        var aUl=contents.getElementsByTagName('ul');
+        var oImg=contents.getElementsByTagName('img')[0];
+        var arr4=['images/1.jpg','images/2.jpg','images/3.jpg','images/4.jpg','images/5.jpg'];
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index=i;
+            aLi[i].onclick=function(){
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].className='';
+                    aUl[i].className='';
+                }
+                this.className='active';
+                aUl[this.index].className='show';
+                fn1(aUl[this.index]);
+            }
+        }
+        fn1(aUl[0]);
+        function fn1(ul){
+            var aLi=ul.getElementsByTagName('li');
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].index=i;
+                aLi[i].onclick=function(){
+                    for(var i=0;i<aLi.length;i++){
+                        aLi[i].className='';
+                    }
+                    this.className='hot';
+                    oImg.src=arr4[this.index];
+                }
+            }
+        }
+    </script>
+</body>
+</html>

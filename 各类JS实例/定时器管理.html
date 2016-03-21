@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{height:100px;width:100px;background:red;position:absolute;top:50px;left:30px;}
+    </style>
+</head>
+<body>
+<input type="button" id="input1" value="向后"/>
+<input type="button" id="input" value="向前"/>
+<div id="div1"></div>
+<script>
+    var input=document.getElementById('input');
+    var input1=document.getElementById('input1')
+    var div=document.getElementById('div1');
+    input.onclick=function(){
+//        clearInterval(div.timer);
+//        //定时器如果是用户控制(事件)的，需要先关后开
+//        div.timer=setInterval(function(){
+//            var speed=parseInt(getStyle(div,'left'))+21;//速度
+//            if(speed>=800){
+//                speed=800;
+//            }//让他停下来
+//            div.style.left=speed+'px';
+//            if(speed==800){
+//                clearInterval(div.timer);//关闭定时器
+//                alert(speed);
+//            }
+//        },20);
+        doMove(div,10,800)
+    };
+    input1.onclick=function(){
+        doMove(div,-12,10);
+    }
+    function doMove(obj,dir,target){//对象，移动方向，目的地
+        clearInterval(obj.timer);
+        obj.timer=setInterval(function(){
+            var speed=parseInt(getStyle(obj,'left'))+dir;
+            if(dir>0&&speed>target){//往前
+                speed=target;
+            }
+            if(dir<0&&speed<target){//往后
+                speed=target;
+            }
+            obj.style.left=speed+'px';
+            if(speed==target){
+                clearInterval(obj.timer);
+            }
+        },30)
+    }
+    function getStyle(obj,attr){
+        return obj.currentStyle? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+    }//返回200px;
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    div{width:400px;}
+    *{padding:0;margin:0;}
+    h2{background-color:#3598db;color:#fff;}
+    span{font-size:15px;}
+    .hide{display:none;}
+    li{list-style:none;border-bottom:1px solid #ccc;padding-left:20px;padding-top:3px;height:30px;line-height:30px;}
+    input{width:200px;height:25px;}
+    img{vertical-align:bottom;padding-bottom:4px;cursor:pointer;}
+    span{cursor:pointer;}
+</style>
+<body>
+    <div>
+        <h2>分类名称</h2>
+        <ul id="list">
+            <li>
+                <span>哈哈</span>
+                <input type="text" class="hide"/>
+                <img src="pen.png" alt="" />
+                <span class="hide">保存</span>
+                <span class="hide">取消</span>
+            </li>
+            <li>
+                <span>哈哈</span>
+                <input type="text" class="hide"/>
+                <img src="pen.png" alt="" />
+                <span class="hide">保存</span>
+                <span class="hide">取消</span>
+            </li>
+            <li>
+                <span>哈哈</span>
+                <input type="text" class="hide"/>
+                <img src="pen.png" alt="" />
+                <span class="hide">保存</span>
+                <span class="hide">取消</span>
+            </li>
+            <li>
+                <span>哈哈</span>
+                <input type="text" class="hide"/>
+                <img src="pen.png" alt="" />
+                <span class="hide">保存</span>
+                <span class="hide">取消</span>
+            </li>
+            <li>
+                <span>哈哈</span>
+                <input type="text" class="hide"/>
+                <img src="pen.png" alt="" />
+                <span class="hide">保存</span>
+                <span class="hide">取消</span>
+            </li>
+            <li>
+                <span>哈哈</span>
+                <input type="text" class="hide"/>
+                <img src="pen.png" alt="" />
+                <span class="hide">保存</span>
+                <span class="hide">取消</span>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var oUl=document.getElementById('list');
+        var aLi=oUl.getElementsByTagName('li');
+        for(var i=0;i<aLi.length;i++){
+            fn1(aLi[i]);
+        }
+        function fn1(oLi){
+            var oSpan=oLi.getElementsByTagName('span')[0];
+            var oInput=oLi.getElementsByTagName('input')[0];
+            var oImg=oLi.getElementsByTagName('img')[0];
+            var save=oLi.getElementsByTagName('span')[1];
+            var del=oLi.getElementsByTagName('span')[2];
+            oImg.onclick=function(){
+                oInput.className='';
+                oSpan.className='hide';
+                oInput.value=oSpan.innerHTML;
+                this.className='hide';
+                save.className='';
+                del.className='';
+            };
+            save.onclick=function(){
+                oSpan.className='';
+                 oSpan.innerHTML=oInput.value;
+                 oInput.className='hide';
+                 oImg.className='';
+                 save.className='hide';
+                del.className='hide';
+            };
+            del.onclick=function(){
+                oSpan.className='';
+                oInput.className='hide';
+                oImg.className='';
+                save.className='hide';
+                del.className='hide';
+            }
+        }
+    </script>
+</body>
+</html>

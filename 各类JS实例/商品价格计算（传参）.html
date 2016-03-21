@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul id="list">
+    <li>
+        <input type="button" value="-"/>
+        <strong>0</strong>
+        <input type="button" value="+"/>
+        单价: <em>12.5元</em>
+        小计: <span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-"/>
+        <strong>2</strong>
+        <input type="button" value="+"/>
+        单价: <em>6.5元</em>
+        小计: <span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-"/>
+        <strong>3</strong>
+        <input type="button" value="+"/>
+        单价: <em>5元</em>
+        小计: <span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-"/>
+        <strong>0</strong>
+        <input type="button" value="+"/>
+        单价: <em>18元</em>
+        小计: <span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-"/>
+        <strong>0</strong>
+        <input type="button" value="+"/>
+        单价: <em>12.5元</em>
+        小计: <span>0元</span>
+    </li>
+    <p></p>
+</ul>
+<script>
+    var oUl=document.getElementById('list');
+    var aLi=oUl.getElementsByTagName('li');
+    for(var i=0;i<aLi.length;i++){
+        fn1(aLi[i]);
+    }
+    function fn2(){
+        var aStrong=oUl.getElementsByTagName('strong');
+        var aSpan=oUl.getElementsByTagName('span');
+        var oP=document.body.getElementsByTagName('p')[0];
+        var aEm=oUl.getElementsByTagName('em');
+        var num=0,span=0;
+        var em=[];
+        for(var i=0;i<aStrong.length;i++){
+            num+=Number(aStrong[i].innerHTML);
+            span+=parseFloat(aSpan[i].innerHTML);
+            if(Number(aStrong[i].innerHTML)){//判断是不是0件
+                em[em.length]=parseFloat(aEm[i].innerHTML);//巧妙用数组长度结合循环增加元素
+            }
+        }
+        for(var i= 0,min=0;i<em.length;i++){
+            if(min<em[i]){
+                min=em[i];
+            }
+        }
+        oP.innerHTML='商品合计共：'+num+'件，共花费了：'+span+'元.其中最贵的商品单价是：'+min+'元。';
+    }
+    //
+    function fn1(oLi){
+        var aInput=oLi.getElementsByTagName('input');
+        var oStrong=oLi.getElementsByTagName('strong')[0];
+        var oEm=oLi.getElementsByTagName('em')[0];
+        var oSpan=oLi.getElementsByTagName('span')[0];
+        var n=Number(oStrong.innerHTML);//字符串
+        var p=parseFloat(oEm.innerHTML);
+        aInput[1].onclick=function(){
+            n++;
+            oStrong.innerHTML=n;
+            oSpan.innerHTML=n*p+'元';
+            fn2();
+        };
+        aInput[0].onclick=function(){
+            n--;
+            if(n<0){
+                n=0;
+            }
+            oStrong.innerHTML=n;
+            oSpan.innerHTML=n*p+'元';
+            fn2();
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        li{width:200px;height:200px;background-color:gold;position:relative;float:left;list-style:none;
+            margin-right:30px;}
+        div{position:absolute;left:100px;top:100px;width:150px;height:150px;background-color:gainsboro;display:none;
+            z-index:999;}
+    </style>
+</head>
+<body>
+<input type="button" value="0"/>
+<input type="button" value="0"/>
+<input type="button" value="0"/>
+<script>
+    var aInput=document.getElementsByTagName('input');
+    var arr=['A','B','C','D'];
+    //    var num;
+    for(var i=0;i<aInput.length;i++){
+        aInput[i].num=0;//自定义属性，开关
+        aInput[i].onclick=function(){
+            this.value=arr[this.num];
+            this.num++;
+            if(this.num>=arr.length){
+                this.num=0;
+            }
+        }
+    }
+</script>
+</body>
+</html>

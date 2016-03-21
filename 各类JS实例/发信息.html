@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{width:240px;height:200px;border:1px solid #333;background:#F1F1F1;padding:10px;overflow:hidden;overflow-y:scroll;
+        text-align:right;}
+
+    </style>
+    <script>
+        window.onload=function() {
+            var div = document.getElementById('div1');
+            var span = document.getElementById('span1');
+            var text = document.getElementById('text');
+            var btn = document.getElementById('btn');
+            btn.onclick = function () {
+                if (text.value == '') {
+                    alert('请输入内容');
+                } else {
+                    div.innerHTML ='说:'+text.value+span.innerHTML+'<br/>'+div.innerHTML;
+                    text.value = '';
+                }
+            };
+            var on=true;
+            span.onclick=function(){
+                if(on){
+                    span.innerHTML='哈哈';
+                    on=false;
+                }else{
+                    span.innerHTML='妙味';
+                    on=true;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<span id="span1">妙味</span>
+<input type="text" id="text"/>
+<input  id="btn" type="button" value="提交"/>
+</body>
+</html>

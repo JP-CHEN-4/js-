@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{padding:0;margin:0}
+        li{list-style:none;}
+        #container{margin:100px auto;border:1px solid #000;padding:10px;width:276px;}
+        #list li{display:inline-block;background:#FF99CC;padding:10px;margin-bottom:4px;}
+        img{width:180px;height:180px;display:inline-block;}
+        .list1{display:inline-block;vertical-align:top;}
+        .list1 li{background:#eee;padding:20px;vertical-align:top;margin-bottom:3px;}
+        /*.list1 .active{background:#1A68A2;color:#fff}*/
+        /*#list .hot{background:#1A68A2;color:#fff;}*/
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div>
+            <ul id="list">
+                <li class="hot">菜单一</li>
+                <li>菜单二</li>
+            </ul>
+        </div>
+        <div id="pic">
+            <img src="images/1.jpg" alt="" id="img1"/>
+            <ul class="list1">
+                <li class="active">图片一</li>
+                <li>图片二</li>
+                <li>图片三</li>
+            </ul>
+            <ul class="list1" style="display:none">
+                <li class="active">图片四</li>
+                <li>图片五</li>
+                <li>图片六</li>
+            </ul>
+        </div>
+    </div>
+    <!--已写死-->
+    <!--这个特效不过关-->
+    <script>
+        var list=document.getElementById('list');
+        var listLi=list.getElementsByTagName('li');
+        var pic=document.getElementById('pic');
+        var img=document.getElementById('img1');
+        var aUl=pic.getElementsByTagName('ul');
+        var arr=['images/1.jpg','images/2.jpg','images/3.jpg','images/4.jpg','images/5.jpg','images/6.jpg'];
+        var aLi=[];
+        var num=0;
+        var flag=0;//开关
+        for(var i=0;i<aUl.length;i++){
+            var li=aUl[i].getElementsByTagName('li');
+            for(var j=0;j<li.length;j++){
+                aLi.push(li[j]);
+            }
+        }
+        function clearAll(){
+            for(var i=0;i<listLi.length;i++){
+                listLi[i].style.background='#FF99CC';
+            }
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].style.background='#eee';
+            }
+        }
+        function autoPlay(){
+            clearAll();
+            aLi[num].style.cssText='background:#1A68A2;color:#fff;';
+            img.src=arr[num];
+            num++;
+            if(flag==0){//这里已经写死了
+                listLi[0].style.cssText='background:#1A68A2;color:#fff;';
+                aUl[0].style.display='inline-block';
+                aUl[1].style.display='none';
+                if(num==3){
+                    flag=1;
+                }
+            }else{
+                listLi[1].style.cssText='background:#1A68A2;color:#fff;';
+                aUl[0].style.display='none';
+                aUl[1].style.display='inline-block';
+                if(num==6){
+                    flag=0;
+                    num=0;
+                }
+            }
+        }
+        setInterval(autoPlay,1000);//无限重复
+    </script>
+</body>
+</html>

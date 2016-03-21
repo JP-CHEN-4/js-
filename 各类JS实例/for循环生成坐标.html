@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{width:50px;height:50px;background:red;position:absolute;top:0;left:0;font-size:30px;text-align:center;
+        line-height:50px;}
+    </style>
+</head>
+<body>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    var str='';
+    for(var i=0;i<100;i++){
+        str+='<div>'+i+'</div>';
+    }
+    document.body.innerHTML=str;
+    for(var i= 0,len=aDiv.length,num;i<len;i++){
+        num=i%10;
+        aDiv[i].style.left=10+i*60+'px';
+        aDiv[i].style.top=
+    }
+</script>
+</body>
+</html>

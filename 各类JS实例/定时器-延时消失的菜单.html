@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{padding:0;margin:0}
+        #header{width:860px;margin:10px auto}
+        li{list-style:none;float:left;height:40px;line-height:40px;}
+        a{text-decoration:none;}
+
+        #nav{background:#4273A5;width:800px;height:40px;border-radius:20px;margin:10px auto;}
+        #nav a{color:#fff;border-radius:10px;padding:5px 26px;}
+        #nav a:hover{background:#7B9CC6;}
+        #nav li:last-child{float:right;}
+        #home,#aboutUs,#showcase,#blog{background:#E3ECF1;border-radius:10px;overflow:hidden;display:none;}
+        #home a,#aboutUs a,#showcase a,#blog a{color:#3C6EA8;padding:5px 15px;border-radius:10px;}
+        #home a:hover,#aboutUs a:hover,#showcase a:hover,#blog a:hover{background:#66FFFF}
+        #home{width:350px;position:relative;left:40px;}
+        #aboutUs{width:380px;position:relative;left:140px;}
+        #showcase{width:330px;position:relative;left:240px;}
+        #blog{width:470px;position:relative;left:335px;}
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="nav">
+            <ul>
+                <li><a href="">首页</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">作品</a></li>
+                <li><a href="#">博客</a></li>
+                <li><a href="#">>>更多</a></li>
+            </ul>
+        </div>
+        <ul id="home">
+            <li><a href="#">最近更新</a></li>
+            <li><a href="#">活动</a></li>
+            <li><a href="#">报名试听</a></li>
+            <li><a href="#">学员反馈</a></li>
+        </ul>
+        <ul id="aboutUs">
+            <li><a href="#">妙味课堂</a></li>
+            <li><a href="#">培训方式</a></li>
+            <li><a href="#">培训理念</a></li>
+            <li><a href="#">联系我们</a></li>
+        </ul>
+        <ul id="showcase">
+            <li><a href="#">般固</a></li>
+            <li><a href="#">MATRIX</a></li>
+            <li><a href="#">留学E网</a></li>
+            <li><a href="#">ECMall</a></li>
+        </ul>
+        <ul id="blog">
+            <li><a href="#">JS教程</a></li>
+            <li><a href="#">弹出层效果</a></li>
+            <li><a href="#">3D球面标签云</a></li>
+            <li><a href="#">Windows计算器</a></li>
+        </ul>
+    </div>
+    <script>
+        var nav=document.getElementById('nav');
+        var oUl=nav.getElementsByTagName('ul')[0];
+        var aLi=oUl.getElementsByTagName('li');
+        var home=document.getElementById('home');
+        var aboutUs=document.getElementById('aboutUs');
+        var showcase=document.getElementById('showcase');
+        var blog=document.getElementById('blog');
+        var objArr=[home,aboutUs,showcase,blog];
+
+        var timer=null;
+        for(var i=0;i<aLi.length-1;i++){
+            aLi[i].index=i;//自定义索引
+            aLi[i].onmouseover=function(){
+                for(var i=0;i<objArr.length;i++){
+                    objArr[i].style.display='none';
+                }
+                objArr[this.index].style.display='block';
+            };
+            aLi[i].onmouseout=function(){
+                This=this;
+                clearInterval(timer);//取得关键性作用
+                timer=setInterval(function(){
+                    objArr[This.index].style.display='none';
+                },2000);
+            };
+            objArr[i].onmouseover=function(){
+                clearInterval(timer);
+                this.style.display='block';
+            };
+            objArr[i].onmouseout=function(){
+                that=this;//注意this的值
+                timer=setInterval(function(){
+                    that.style.display='none';
+                },2000);
+            };
+        }
+        ////////////单个///////////
+//        aLi[0].onmouseover=show;
+//        aLi[0].onmouseout=hide;
+//        home.onmouseover=show;
+//        home.onmouseout=hide;
+//        function show(){
+//            clearInterval(timer);
+//            home.style.display='block';
+//        };
+//        function hide(){
+//           timer=setInterval(function(){
+//                home.style.display='none';
+//            },1000);
+//        }
+//                function show(){
+//                    clearInterval(timer);
+//                    home.style.display='block';
+//                };
+//                function hide(){
+//                   timer=setInterval(function(){
+//                        home.style.display='none';
+//                    },1000);
+//                }
+    </script>
+</body>
+</html>

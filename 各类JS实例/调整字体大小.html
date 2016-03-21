@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload=function(){
+            var btn1=document.getElementById('btn1');
+            var btn2=document.getElementById('btn2');
+            var p=document.getElementById('p1');
+            var num=15;
+            btn1.onclick=function(){
+                if(num>12) {
+                    num--;
+                    p.style.fontSize = num + 'px';
+                }
+            };
+            btn2.onclick=function(){
+                if(num<22){
+                num++;
+                p.style.fontSize=num+'px';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button type="button" id="btn1">-</button>
+    <button type="button" id="btn2">+</button>
+    <p id="p1">欧冠1/8决赛次回合，皇马坐镇主场2-0完胜罗马，总比分4-0淘汰对手晋级8强。C罗再次成为决定胜负的关键先生：打破僵局的进球，助攻J罗破门。这是C罗本赛季第40球，也是他欧冠史上的第90球。除了进球数压制梅西之外，C罗也是欧冠现役助攻王！</p>
+</body>
+</html>

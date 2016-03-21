@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        li{list-style:none;margin-bottom:3px;height:30px;}
+    </style>
+</head>
+<body>
+    <ul id="list">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        var oUl=document.getElementById('list');
+        var aLi=oUl.getElementsByTagName('li');
+        var str='';
+        var color=['yellow','red','green','blue'];
+        for(var i=0;i<aLi.length;i++){
+//            aLi[i].index=i;
+            aLi[i].style.backgroundColor=color[i%color.length];
+            aLi[i].onmouseover=function(){
+                str=this.style.backgroundColor;
+                this.style.backgroundColor='gray';
+            };
+            //变回原来的颜色有两种思路,加索引值,存取起来
+            aLi[i].onmouseout=function(){
+//                this.style.backgroundColor=color[this.index%color.length];
+                this.style.backgroundColor=str;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{padding:0;margin:0;}
+        body{background-color:#333;}
+        #container{width:500px;height:500px;margin:0 auto;position:relative;}
+        #container ul{width:500px;position:absolute;top:530px;left:0;padding-left:170px;}
+        #container ul li{float:left;line-height:30px;height:30px;width:30px;border-radius:15px;background-color:#A39F9F;
+        list-style:none;margin-right:10px;position:relative;}
+        #container img{width:500px;height:500px;}
+        #container a{text-decoration:none;display:block;width:50px;height:50px;border-radius:50px;
+        color:#fff;text-align:center;line-height:50px;background-color:#ba6317;opacity: 0.4;filter:alpha(opacity:40);}
+        #container a:hover{opacity:0.9;filter:alpha(opacity:40);}
+        #prev{position:absolute;top:50%;left:0;}
+        #next{position:absolute;top:50%;left:450px;}
+        #container ul li.active{background-color:#ba6317;}
+        #container ul li .img1{position:absolute;top:-57px;left:-10px;width:50px;height:50px;}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="" alt=""/>
+        <a href="#" id="prev">&lt;</a>
+        <a href="#" id="next">&gt;</a>
+        <ul>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        var oDiv=document.getElementById('container');
+        var oImg=oDiv.getElementsByTagName('img')[0];
+        var prev=document.getElementById('prev');
+        var next=document.getElementById('next');
+        var oUl=oDiv.getElementsByTagName('ul')[0];
+        var aLi=oUl.getElementsByTagName('li');
+        var arr=['a1.jpg','a2.jpg','a3.jpg','a4.jpg'];
+        var num=0;
+        oImg.src=arr[num];
+        prev.onclick=function(){
+            num--;
+            if(num==-1){
+                num=arr.length-1;
+            }
+            oImg.src=arr[num];
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].className=''
+            }
+            aLi[num].className='active';
+        };
+        next.onclick=function(){
+            num++;
+            if(num==arr.length){
+                num=0;
+            }
+            oImg.src=arr[num];
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].className=''
+            }
+            aLi[num].className='active';
+        };
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index=i;
+            aLi[i].onmouseover=function(){
+                this.innerHTML='<img src="'+arr[this.index]+'" class="img1"/>';
+            };
+            aLi[i].onmouseout=function(){
+                this.innerHTML='';
+            };
+            aLi[i].onclick=function(){
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].className='';
+                }
+                this.className='active';
+                oImg.src=arr[this.index];
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
